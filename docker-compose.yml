@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+
+  ubuntu-init:
+    image: anti1346/ubuntu-systemd:latest
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    restart: always
+    container_name: ubuntu-systemd
+    hostname: ubuntu-systemd
+    privileged: true
+    #stdin_open: true
+    #tty: true
+    command: /lib/systemd/systemd
+    ports:
+      - 2222:22
+    networks:
+      - ubuntu_net
+
+networks:
+  ubuntu_net:
