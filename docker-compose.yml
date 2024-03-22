@@ -10,13 +10,18 @@ services:
     container_name: ubuntu-systemd
     hostname: ubuntu-systemd
     privileged: true
-    #stdin_open: true
     #tty: true
-    command: /lib/systemd/systemd
+    #stdin_open: true
+    environment:
+      - SSH_ROOT_PASSWORD=${SSH_ROOT_PASSWORD}
+    #command: /lib/systemd/systemd
+    volumes:
+      - /usr/share/zoneinfo/Asia/Seoul:/etc/localtime:ro
     ports:
       - 2222:22
     networks:
-      - ubuntu_net
+      - my_network
 
 networks:
-  ubuntu_net:
+  my_network:
+    name: my_network
